@@ -1,0 +1,1 @@
+<script type="text/javascript">location.href = '<?php echo base_url();?>index.html';</script>
