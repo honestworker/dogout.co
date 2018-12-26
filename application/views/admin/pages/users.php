@@ -11,8 +11,6 @@
             <table id="user_table" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
                 <th>Email</th>
                 <th>Created At</th>
                 <th>Status</th>
@@ -24,8 +22,6 @@
             foreach($users as $user) {
                 ?>
                 <tr data-id="<?php echo $user->id; ?>">
-                    <td><?php echo $user->first_name; ?></td>
-                    <td><?php echo $user->last_name; ?></td>
                     <td><?php echo $user->email; ?></td>
                     <td><?php echo $user->created_at; ?></td>
                     <td><?php echo $user->status; ?></td>
@@ -49,9 +45,6 @@
             ?>
             </tbody>
             <tfoot>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
                 <th>Email</th>
                 <th>Created At</th>
                 <th>Status</th>

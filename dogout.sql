@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 21, 2018 at 09:41 PM
--- Server version: 5.6.41-84.1
--- PHP Version: 5.6.30
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 26, 2018 at 06:04 AM
+-- Server version: 10.2.18-MariaDB
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,43 +19,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cabgomau_taxi`
+-- Database: `u900336547_malug`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `images`
---
-
-CREATE TABLE `images` (
-  `id` int(11) NOT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `parent_id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `profile`
---
-
-CREATE TABLE `profile` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `comment` varchar(512) COLLATE utf8_unicode_ci DEFAULT '',
-  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `phone_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_confirmed` tinyint(4) DEFAULT '0',
-  `email_confirmed` tinyint(4) DEFAULT '0',
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -90,9 +55,7 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `name`) VALUES
 (1, 'System Admin'),
-(2, 'Driver'),
-(3, 'User'),
-(4, 'Visitor');
+(2, 'User');
 
 -- --------------------------------------------------------
 
@@ -108,10 +71,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `phone_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `latitude` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `longitude` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `activation_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
@@ -119,16 +79,16 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Indexes for table `images`
+-- Dumping data for table `users`
 --
-ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
+
+INSERT INTO `users` (`id`, `email`, `role`, `salt`, `password`, `token`, `email_code`, `password_code`, `status`, `activation_code`, `created_at`, `updated_at`) VALUES
+(1, 'honestworker818@gmail.com', 1, '@Vam#LpoAf', '0a7e23ec6198f2645fb34f83fd7788d8', NULL, NULL, '', 'activated', '123', '2018-12-25 16:38:09', '2018-12-25 16:38:09'),
+(2, 'janghaoling@gmail.com', 2, 'iF#ezCRN%k', 'e8de70f6e30734a8c086c62ca71fe162', 'zyBamDewsEEpKayahiwoDZIlsITql@XJFEBYu#vReBYJJiBRRTsotTJRDEbjmQzI#hKEptLfNHiZBl!eSVNLZgntlXHAJSkTbqvx', '50285', '', 'activated', NULL, '2018-12-25 18:03:36', '2018-12-26 02:18:13');
 
 --
--- Indexes for table `profile`
+-- Indexes for dumped tables
 --
-ALTER TABLE `profile`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ratings`
@@ -153,18 +113,6 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `images`
---
-ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `profile`
---
-ALTER TABLE `profile`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
@@ -180,7 +128,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,13 +1,20 @@
-# Taxi App API
+# Google Map App(Dog-Friendly) API
 
-This site is API and Admin Panel for Taxi App built by Codeigniter.
+This site is API and Admin Panel for Google Map App built by Codeigniter.
 
 ## Live Site
 
-https://cabgomaurice.com
+https://dogout.co
 
 ## Features
 
-* User Mangement(Admin, Driver, User).
-* Alert Notification (in Admin Panel).
-* SMTP, SMS(Nexmo) : Email Verificatioin, Phone Verification
+* Admin Panel
+    - Administrator, User management
+    - View of the Ratings to the app
+    - View of the Reports to the app
+    - Alert Notification
+
+* APP API
+    - User management
+    - Ratings to the app
+    - Reports to the app

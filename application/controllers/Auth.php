@@ -41,7 +41,7 @@ class Auth extends CI_Controller {
         );
         if ($this->form_validation->run() !== false) {
             $user_data = array(
-                'email'			    => strip_tags(trim($this->input->post('email'))),
+                'email'			    => strtolower(strip_tags(trim($this->input->post('email')))),
                 'password'		    => strip_tags(trim($this->input->post('password'))),
                 'role'              => 1,
             );
@@ -49,14 +49,14 @@ class Auth extends CI_Controller {
             if ( $result['error_type'] == 0 ) {
                 $this->flash_data['alerts']['success'][] = 'Successfully login.';
             } else if ( $result['error_type'] == -1 ) {
-                $this->flash_data['errors'][] = 'No activated';
+                $this->flash_data['alerts']['error'][] = 'No activated';
             } else if ( $result['error_type'] == -2 ) {
-                $this->flash_data['errors'][] = 'Wrong Password';
+                $this->flash_data['alerts']['error'][] = 'Wrong Password';
             } else if ( $result['error_type'] == -3 ) {
-                $this->flash_data['errors'][] = 'No exist';
+                $this->flash_data['alerts']['error'][] = 'No exist';
             }
         } else {
-            $this->flash_data['errors'] = $this->form_validation->error_array();
+            $this->flash_data['alerts']['error'] = $this->form_validation->error_array();
         }
 
         $this->session->set_flashdata('flash_data', $this->flash_data);
@@ -71,10 +71,10 @@ class Auth extends CI_Controller {
 	}
 	
     public function forgotPassword() {
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');        
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
         if ($this->form_validation->run() !== false) {
-            $result = $this->User_Model->forgotPassword(1, strip_tags(trim($this->input->post('email'))));
+            $result = $this->User_Model->forgotPassword(1, strtolower(strip_tags(trim($this->input->post('email')))));
             if ( $result == 0 ) {
                 $this->flash_data['alerts']['success'][] = 'We have sent your activation code to your email. Please look at your email.';
             } else if ( $result == -1 ) {
@@ -83,7 +83,7 @@ class Auth extends CI_Controller {
                 $this->flash_data['alerts']['error'][] = 'The email does not exist.';
             }
         } else {
-            $this->flash_data['errors'] = $this->form_validation->error_array();
+            $this->flash_data['alerts']['error'] = $this->form_validation->error_array();
         }
         
         $this->session->set_flashdata('flash_data', $this->flash_data);
@@ -104,7 +104,7 @@ class Auth extends CI_Controller {
     public function changeAdminPassword() {
         $this->form_validation->set_rules('active_code', 'Active Code', 'trim|required|max_length[255]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[255]');
-        $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|matches[password]');     
+        $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|matches[password]');
 
         if ($this->form_validation->run() !== false) {
             $result = $this->User_Model->changeAdminPassword(strip_tags(trim($this->input->post('active_code'))), strip_tags(trim($this->input->post('password'))));
@@ -116,7 +116,7 @@ class Auth extends CI_Controller {
                 $this->flash_data['alerts']['error'][] = 'The activation code is expired. Please try again.';
             }
         } else {
-            $this->flash_data['errors'] = $this->form_validation->error_array();
+            $this->flash_data['alerts']['error'] = $this->form_validation->error_array();
         }
         
         $this->session->set_flashdata('flash_data', $this->flash_data);
@@ -133,7 +133,7 @@ class Auth extends CI_Controller {
 
         if ($this->form_validation->run() !== false) {
             $user_data = array(
-                'email'			    => strip_tags(trim($this->input->post('email'))),
+                'email'			    => strtolower(strip_tags(trim($this->input->post('email')))),
                 'password'		    => strip_tags(trim($this->input->post('password'))),
                 'role'			    => 1,
                 'images'			=> null,
@@ -149,7 +149,7 @@ class Auth extends CI_Controller {
                 $this->flash_data['alerts']['error'][] = 'Database operation failed.';
             }
         } else {
-            $this->flash_data['errors'] = $this->form_validation->error_array();
+            $this->flash_data['alerts']['error'] = $this->form_validation->error_array();
         }
         
         $this->session->set_flashdata('flash_data', $this->flash_data);
@@ -162,16 +162,19 @@ class Auth extends CI_Controller {
     public function active( $activation_code ) {
         if ( $this->Auth_Model->activation( strip_tags(trim($activation_code))) ) {
             $this->flash_data['alerts']['success'][] = 'Successfully activated. Please login.';
-            redirect('login');
+            $this->session->set_flashdata('flash_data', $this->flash_data);
+    
+            $this->load->view('common/layouts/header');
+            $this->load->view('common/pages/login');
+            $this->load->view('common/layouts/footer');
         } else {
             $this->flash_data['alerts']['error'][] = 'Fail Activation!';
+    
+            $this->load->view('common/layouts/header');
+            $this->load->view('common/pages/signup');
+            $this->load->view('common/layouts/footer');
         }
 
-        $this->session->set_flashdata('flash_data', $this->flash_data);
-
-        $this->load->view('common/layouts/header');
-        $this->load->view('common/pages/login');
-        $this->load->view('common/layouts/footer');
     }
 
     public function logout() {

@@ -16,7 +16,7 @@ if (isset($users_counts)) {
 <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-3 col-xs-12">
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
@@ -30,21 +30,7 @@ if (isset($users_counts)) {
             </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-4 col-xs-12">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3><?php echo $driver_counts;?></h3>
-                    <p>Drivers</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-android-people""></i>
-                </div>
-                <a href="<?php echo (base_url() . 'drivers'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-3 col-xs-12">
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">

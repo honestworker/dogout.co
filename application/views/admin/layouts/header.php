@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" type="image/png" sizes="96x96" href="<?php echo base_url();?>assets/custom/images/favicon-96x96.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://static1.squarespace.com/static/5b5da9f2372b96ca74e04474/t/5b5dd2a01ae6cf84853d9825/favicon.ico">
     <title><?php echo APP_NAME;?> | Dashboard</title>
 
     <!-- Tell the browser to be responsive to screen width -->
@@ -21,6 +21,9 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
         folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/skins/_all-skins.min.css">
+    <!-- Dogout Skins. Choose a skin from the css/skins
+        folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/custom/css/dogout-skin.css">
     <!-- Morris chart -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/morris.js/morris.css">
     <!-- jvectormap -->
@@ -43,7 +46,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini skin-dogout">
 
 <div class="wrapper">
     <header class="main-header">
@@ -66,13 +69,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?php echo (base_url() . 'public/images/users/' . $this->session->userdata('avatar')); ?>" class="user-image" alt="User Image">
+                        <img src="<?php echo (base_url() . 'public/images/users/no_avatar.jpg'); ?>" class="user-image" alt="User Image">
                         <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="<?php echo (base_url() . 'public/images/users/' . $this->session->userdata('avatar')); ?>" class="img-circle" alt="User Image">
+                                <img src="<?php echo (base_url() . 'public/images/users/no_avatar.jpg'); ?>" class="img-circle" alt="User Image">
                                 <p>
                                     <?php echo $this->session->userdata('name'); ?>
                                 </p>

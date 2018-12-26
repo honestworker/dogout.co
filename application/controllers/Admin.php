@@ -65,24 +65,6 @@ class Admin extends CI_Controller {
         $this->load->view('admin/pages/admins', $data);
         $this->load->view('admin/layouts/footer');
     }
-
-	public function getAllDrivers() {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('login');
-            }
-        }
-
-        $data['drivers'] = $this->User_Model->getUsers(2);
-
-        $this->load->view('admin/layouts/header');
-        $this->load->view('admin/layouts/siderbar');
-        $this->load->view('admin/pages/drivers', $data);
-        $this->load->view('admin/layouts/footer');
-    }
     
 	public function getAllUsers() {
         $user_data = $this->session->get_userdata();
@@ -94,7 +76,7 @@ class Admin extends CI_Controller {
             }
         }
 
-        $data['users'] = $this->User_Model->getUsers(3);
+        $data['users'] = $this->User_Model->getUsers(2);
 
         $this->load->view('admin/layouts/header');
         $this->load->view('admin/layouts/siderbar');

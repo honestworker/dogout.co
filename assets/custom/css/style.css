@@ -2,37 +2,136 @@
 /*
 * Langing Section
 */
-html {
-    height: auto;
-}
-
+  
 .landing-section {
-    position: relative;
-    margin: 0;
-    background-color: #FFFB6B;
+    background-color: #FFFB97;
 }
 
-.landing-box-body {
-    background: inherit;
-    padding: 20px;
-    border-top: 0;
-    color: #000000;
+.landing-logo {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.landing-box {
-    margin: 10% auto;
+.landing-body {
+    position: absolute;
+    top: 50%;
+    text-align: center;
 }
 
-@media (min-width: 600px) {
-    .landing-box {
-        max-width: 360px;
+.landing-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 16px;
+}
+
+.landing-input-left {
+    text-align: left;
+}
+
+.icheckbox_square-blue {
+    background: no-repeat;
+    background-color: white;
+}
+
+.icheckbox_square-blue.checked {
+    background: no-repeat;
+    background-color: black;
+}
+
+.landing-input a, .landing-footer a {
+    color: black;
+    text-decoration: underline;
+}
+
+@media (max-height: 1500px) {
+    .landing-logo img {
+        height: 130px;
+    }
+    .landing-input, .btn-wblock {
+        font-size: 28px;
+        height: 45px;
     }
 }
-.landing-logo {
-    font-size: 35px;
-    text-align: center;
-    margin-bottom: 25px;
-    font-weight: 300;
+
+@media (max-height: 1200px) {
+    .landing-logo img {
+        height: 120px;
+    }
+    .landing-input, .btn-wblock {
+        font-size: 26px;
+        height: 43px;
+    }
+}
+
+@media (max-height: 900px) {
+    .landing-logo img {
+        height: 100px;
+    }
+    .landing-input, .btn-wblock {
+        font-size: 18px;
+        height: 42px;
+    }
+}
+
+@media (max-height: 800px) {
+    .landing-logo img {
+        height: 90px;
+    }
+    .landing-input, .btn-wblock {
+        font-size: 16px;
+        height: 40px;
+    }
+}
+
+@media (max-height: 700px) {
+    .landing-logo img {
+        height: 80px;
+    }
+}
+
+@media (max-height: 600px) {
+    .landing-logo img {
+        height: 70px;
+    }
+    .landing-input, .btn-wblock {
+        font-size: 15px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .landing-body {
+        width: 50%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .landing-body {
+        width: 50%;
+    }
+}
+
+@media (max-width: 900px) {
+    .landing-body {
+        width: 70%;
+    }
+}
+
+@media (max-width: 800px) {
+    .landing-body {
+        width: 60%;
+    }
+}
+
+.landing-body {
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /*
@@ -90,14 +189,6 @@ html {
 .mt-50 { margin-top: 50px; }
 .mt-55 { margin-top: 55px; }
 .mt-60 { margin-top: 60px; }
-.mt-65 { margin-top: 65px; }
-.mt-70 { margin-top: 70px; }
-.mt-75 { margin-top: 75px; }
-.mt-80 { margin-top: 80px; }
-.mt-85 { margin-top: 85px; }
-.mt-90 { margin-top: 90px; }
-.mt-95 { margin-top: 95px; }
-.mt-100 { margin-top: 100px; }
 
 .mb-10 { margin-bottom: 10px; }
 .mb-15 { margin-bottom: 15px; }

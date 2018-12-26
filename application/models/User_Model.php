@@ -165,15 +165,14 @@ class User_Model extends CI_Model {
     *  Get all users by according the user role
     */
     public function getUsers($role) {
-        $this->db->select('id, email, created_at, status');
-        $sql_query = $this->db->get('users');
-        $type = "";
+        $this->db->select('id, email, created_at, status'); // Select field
+        $this->db->from('users');
         if ($role) {
-            $sql_query .= " WHERE role = " . $role;
+            $this->db->where('role', $role);
         }
-        $sql_query .= " ORDER BY created_at;";
-        $users = $this->db->query($sql_query)->result();
-        
+        $this->db->order_by('created_at', 'DESC');
+        $users = $this->db->get()->result();
+
         return $users;
     }
     

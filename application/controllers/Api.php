@@ -42,7 +42,7 @@ class Api extends CI_Controller {
 
         $user_data = array(
             'role'			    => 2,
-            'email'			    => strip_tags(trim($jsonRequest['email'])),
+            'email'			    => strtolower(strip_tags(trim($jsonRequest['email']))),
             'password'		    => strip_tags($jsonRequest['password']),
         );
         $result = $this->Auth_Model->login($user_data);
@@ -85,7 +85,7 @@ class Api extends CI_Controller {
         }
 
         $user_data = array(
-            'email'			    => strip_tags(trim($jsonRequest['email'])),
+            'email'			    => strtolower(strip_tags(trim($jsonRequest['email']))),
             'password'		    => strip_tags($jsonRequest['password']),
             'role'			    => 2,
         );
@@ -136,7 +136,7 @@ class Api extends CI_Controller {
             exit(-1);
         }
         
-        $result = $this->User_Model->emailVerify(2, strip_tags(trim($jsonRequest['email'])), strip_tags(trim($jsonRequest['code'])));
+        $result = $this->User_Model->emailVerify(2, strtolower(strip_tags(trim($jsonRequest['email']))), strip_tags(trim($jsonRequest['code'])));
         if ( $result == 0 ) {
             $this->response['status'] = 'success';
             $this->response['error_type'] = '';
@@ -162,7 +162,7 @@ class Api extends CI_Controller {
             exit(-1);
         }
 
-        $result = $this->User_Model->forgotPassword(2, strip_tags(trim($jsonRequest['email'])));
+        $result = $this->User_Model->forgotPassword(2, strtolower(strip_tags(trim($jsonRequest['email']))));
         if ( $result == 0 ) {
             $this->response['status'] = 'success';
             $this->response['error_type'] = '';
@@ -191,7 +191,7 @@ class Api extends CI_Controller {
             exit(-1);
         }
 
-        $result = $this->User_Model->changePassword(2, strip_tags(trim($jsonRequest['email'])), strip_tags($jsonRequest['password']), strip_tags(trim($jsonRequest['code'])));
+        $result = $this->User_Model->changePassword(2, strtolower(strip_tags(trim($jsonRequest['email']))), strip_tags($jsonRequest['password']), strip_tags(trim($jsonRequest['code'])));
         if ( $result == 0 ) {
             $this->response['status'] = 'success';
             $this->response['error_type'] = '';

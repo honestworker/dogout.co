@@ -11,8 +11,6 @@
             <table id="admin_table" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
                 <th>Email</th>
                 <th>Created At</th>
                 <th>Status</th>
@@ -24,8 +22,6 @@
             foreach($admins as $admin) {
                 ?>
                 <tr data-id="<?php echo $admin->id; ?>">
-                    <td><?php echo $admin->first_name; ?></td>
-                    <td><?php echo $admin->last_name; ?></td>
                     <td><?php echo $admin->email; ?></td>
                     <td><?php echo $admin->created_at; ?></td>
                     <td><?php echo $admin->status; ?></td>
@@ -50,8 +46,6 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
                 <th>Email</th>
                 <th>Created At</th>
                 <th>Status</th>

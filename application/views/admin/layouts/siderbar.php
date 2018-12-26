@@ -17,7 +17,7 @@ if ($admin_url_array) {
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="<?php echo (base_url() . 'public/images/users/' . $this->session->userdata('avatar')); ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo (base_url() . 'public/images/users/no_avatar.jpg'); ?>" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p><?php echo $this->session->userdata('name'); ?></p>
@@ -26,7 +26,6 @@ if ($admin_url_array) {
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
             <li class="<?php if ($main_url == '' || $main_url == 'dashboard') { echo 'active menu-open'; } ?>"><a href="<?php echo base_url();?>admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
             <li class="treeview <?php if ($main_url == 'admins' || $main_url == 'drivers' || $main_url == 'users') { echo 'active menu-open'; } ?>">
                 <a href="#">
@@ -37,7 +36,6 @@ if ($admin_url_array) {
                 </a>
                 <ul class="treeview-menu">
                     <li class="<?php if ($main_url == 'admins') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>admins"><i class="fa fa-user-secret"></i> Admins</a></li>
-                    <li class="<?php if ($main_url == 'drivers') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>drivers"><i class="fa fa-car"></i> Drivers</a></li>
                     <li class="<?php if ($main_url == 'users') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>users"><i class="fa fa-user-o"></i> Users</a></li>
                 </ul>
             </li>
@@ -63,8 +61,6 @@ if ($admin_url_array) {
             <?php
                 if ($main_url == 'admins') {
                     ?><a href="<?php echo base_url();?>admins">Admins</a><?php
-                } else if ($main_url == 'drivers') {
-                    ?><a href="<?php echo base_url();?>drivers">Drivers</a><?php
                 } else if ($main_url == 'users') {
                     ?><a href="<?php echo base_url();?>users">Users</a><?php
                 }
