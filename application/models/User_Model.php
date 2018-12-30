@@ -165,7 +165,7 @@ class User_Model extends CI_Model {
     *  Get all users by according the user role
     */
     public function getUsers($role) {
-        $this->db->select('id, email, created_at, status'); // Select field
+        $this->db->select('id, email, name, created_at, status'); // Select field
         $this->db->from('users');
         if ($role) {
             $this->db->where('role', $role);

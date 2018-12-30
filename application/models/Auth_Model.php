@@ -23,7 +23,7 @@ class Auth_Model extends CI_Model {
         
         $chars_len = strlen($char_seed);
         $ret = '';
-        for($i = 0; $i < $len; $i++){
+        for($i = 0; $i < $len; $i++) {
             $ret .= $char_seed[rand(0, $chars_len  - 1)];
         }
         
@@ -65,7 +65,7 @@ class Auth_Model extends CI_Model {
             }
 
             $salt = $this->generate_code(10, 'middle');
-            $this->db->update('users', array('salt' => $salt, 'password' => md5($data['password'] . $salt), 'updated_at' => date('Y-m-d H:i:s')), array('id' => $user->id) );
+            $this->db->update('users', array('name' => $data['name'], 'salt' => $salt, 'password' => md5($data['password'] . $salt), 'updated_at' => date('Y-m-d H:i:s')), array('id' => $user->id) );
 
             if ($data['role'] == 2) {
                 $code = $this->generate_code(5, 'light');
@@ -77,12 +77,14 @@ class Auth_Model extends CI_Model {
             $response['user'] = array(
                 'id'			    => $user->id,
                 'email'			    => $user->email,
+                'name'			    => $data['name'],
                 'created_at'	    => $user->created_at,
             );
         } else {
             $salt = $this->generate_code(10, 'middle');
             $user_data = array(
                 'email'			    => $data['email'],
+                'name'			    => $data['name'],
                 'role'			    => $data['role'],
                 'salt'			    => $salt,
                 'password'		    => md5($data['password'] . $salt),
@@ -106,6 +108,7 @@ class Auth_Model extends CI_Model {
                     $response['error_type'] = 0;
                     $response['user'] = array(
                         'id'			    => $user->id,
+                        'name'			    => $user->name,
                         'email'			    => $user->email,
                         'created_at'	    => $user->created_at,
                     );

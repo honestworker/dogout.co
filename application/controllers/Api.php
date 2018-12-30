@@ -64,11 +64,11 @@ class Api extends CI_Controller {
 
     public function signup() {
         $jsonRequest = json_decode(file_get_contents('php://input'), true);
-        if ( !isset($jsonRequest['email']) || !isset($jsonRequest['password']) || !isset($jsonRequest['confirm_password']) ) {
+        if ( !isset($jsonRequest['email']) || !isset($jsonRequest['name']) || !isset($jsonRequest['password']) || !isset($jsonRequest['confirm_password']) ) {
             echo json_encode($this->response);
             exit(-1);
         }
-        if ( strlen($jsonRequest['password'])  < 6 || strlen($jsonRequest['password']) > 255 || strlen($jsonRequest['confirm_password'])  < 6 || strlen($jsonRequest['confirm_password']) > 255 ) {
+        if ( strlen($jsonRequest['name'])  < 2 || strlen($jsonRequest['name']) > 255 || strlen($jsonRequest['password'])  < 6 || strlen($jsonRequest['password']) > 255 || strlen($jsonRequest['confirm_password'])  < 6 || strlen($jsonRequest['confirm_password']) > 255 ) {
             $this->response['error_type'] = 'length_error';
             echo json_encode($this->response);
             exit(-1);
@@ -86,6 +86,7 @@ class Api extends CI_Controller {
 
         $user_data = array(
             'email'			    => strtolower(strip_tags(trim($jsonRequest['email']))),
+            'name'              => strip_tags($jsonRequest['name']),
             'password'		    => strip_tags($jsonRequest['password']),
             'role'			    => 2,
         );
