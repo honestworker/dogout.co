@@ -3,8 +3,12 @@
 * Langing Section
 */
   
-.landing-section {
+.landing-yellow {
     background-color: #FFFB97;
+}
+
+.landing-white {
+    background-color: #FFFFFF;
 }
 
 .landing-logo {
@@ -14,10 +18,51 @@
     transform: translate(-50%, -50%);
 }
 
+.landing-logo.landing-bar {
+    background-color: #FFFB97;
+    width: 100%;
+    top: 5%;
+    text-align: center;
+}
+
+.landing-logo.landing-bar img {
+    margin-top: 250px;
+    margin-bottom: 80px;
+}
+
+.landing-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 .landing-body {
     position: absolute;
     top: 50%;
     text-align: center;
+}
+
+.landing-body-text {
+    position: absolute;
+    top: 40%;
+    padding: 0px 30px;
+    font-size: 25px;
+    word-break: break-all;
+}
+
+.text-header {
+    font-weight: 1000;
+    text-align: center;
+    margin: 30px 0px;
+}
+
+.text-highlight {
+    font-weight: 1000;
+    text-decoration: underline;
+}
+
+.text-body p {
+    margin-bottom: 18px;
 }
 
 .landing-footer {
@@ -49,13 +94,50 @@
     text-decoration: underline;
 }
 
+.landing-body {
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/*
+* Button
+*/
+.btn-black {
+    color: #fff;
+    border-color: #000;
+    background-color: #000;
+}
+
+.btn-white {
+    color: #000;
+    border-color: #fff;
+    background-color: #fff;
+}
+
+.btn-black a {
+    color: #fff;
+}
+
+.btn-white a {
+    color: #000;
+}
+
+.btn-wblock {
+    display: block;
+    font-weight: 1000;
+    width: -webkit-fill-available;
+}
+
+/*
+*   Responsive
+*/
 @media (max-height: 1500px) {
     .landing-logo img {
         height: 130px;
     }
     .landing-input, .btn-wblock {
         font-size: 28px;
-        height: 45px;
+        height: 50px;
     }
 }
 
@@ -65,7 +147,7 @@
     }
     .landing-input, .btn-wblock {
         font-size: 26px;
-        height: 43px;
+        height: 50px;
     }
 }
 
@@ -74,7 +156,7 @@
         height: 100px;
     }
     .landing-input, .btn-wblock {
-        font-size: 18px;
+        font-size: 17px;
         height: 42px;
     }
 }
@@ -129,37 +211,18 @@
     }
 }
 
-.landing-body {
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/*
-* Button
-*/
-.btn-black {
-    color: #fff;
-    border-color: #000;
-    background-color: #000;
-}
-
-.btn-white {
-    color: #000;
-    border-color: #fff;
-    background-color: #fff;
-}
-
-.btn-black a {
-    color: #fff;
-}
-
-.btn-white a {
-    color: #000;
-}
-
-.btn-wblock {
-    display: block;
-    width: -webkit-fill-available;
+@media (min-width: 1025px) {
+    .landing-logo img {
+        height: 140px;
+    }
+    .landing-input, .btn-wblock {
+        font-size: 26px;
+        width: 380px;
+    }
+    .landing-body-text {
+        top: 35%;
+        padding: 0px 100px;
+    }
 }
 
 /*

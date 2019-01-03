@@ -16,7 +16,7 @@
                 <input type="password" class="form-control landing-input" name="confirm_password" placeholder="Repeat Password" required />
             </div>
             <div class="row landing-input landing-input-left mt-10 mb-5">
-                <input type="checkbox" class="landing-check" required /><span>  I accept the <a href="<?php echo site_url('terms');?>">Terms & Conditions</a></span>
+                <input type="checkbox" class="landing-check" required /><span>  I accept the <a href="<?php echo base_url();?>terms">Terms & Conditions</a></span>
             </div>
             <div class="row">
                 <button type="submit" class="btn btn-wblock btn-black">Sign Up</button>

@@ -38,4 +38,8 @@
 	<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>assets/custom/images/logo.png" />
 </head>
 
-<body class="hold-transition login-page landing-section">
+<?php if ( isset($background_color) ) { ?>
+		<body class="hold-transition login-page landing-<?php echo $background_color;?>">
+	<?php } else { ?>
+		<body class="hold-transition login-page landing-yellow">
+	<?php } ?>

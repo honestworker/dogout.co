@@ -5,12 +5,16 @@
     </div>
 	<!-- /.landing-body -->
     <div class="landing-body">
-		<button type="submit" class="btn btn-wblock btn-black mb-20">
-			<a href="<?php echo base_url();?>login">Log in</a>
-		</button>
-		<button type="submit" class="btn btn-wblock btn-white">
-			<a href="<?php echo base_url();?>signup">Sign up</a>
-		</button>
+		<div class="row">
+			<button type="submit" class="btn btn-wblock btn-black mb-20">
+				<a href="<?php echo base_url();?>login">Log in</a>
+			</button>
+		</div>
+		<div class="row">
+			<button type="submit" class="btn btn-wblock btn-white">
+				<a href="<?php echo base_url();?>signup">Sign up</a>
+			</button>
+		</div>
     </div>
     <div class="landing-footer">
 		<p>The dog-friendly map</p>

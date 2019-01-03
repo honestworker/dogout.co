@@ -23,6 +23,10 @@ class Auth extends CI_Controller {
                 'error' => null
             )
         );
+
+        $this->header_data = array(
+            'background_color' => 'yellow'
+        );
     }
 
 	public function index() {
@@ -62,9 +66,9 @@ class Auth extends CI_Controller {
         $this->session->set_flashdata('flash_data', $this->flash_data);
 
         if ( $result['error_type'] == 0 ) {
-            redirect('dashboard');
+            redirect('../dashboard');
         } else {
-            $this->load->view('common/layouts/header');
+            $this->load->view('common/layouts/header', $this->header_data);
             $this->load->view('common/pages/login');
             $this->load->view('common/layouts/footer');
         }
@@ -88,16 +92,16 @@ class Auth extends CI_Controller {
         
         $this->session->set_flashdata('flash_data', $this->flash_data);
 
-        $this->load->view('common/layouts/header');
+        $this->load->view('common/layouts/header', $this->header_data);
         $this->load->view('common/pages/forgot');
         $this->load->view('common/layouts/footer');
     }
 
     public function changePassword($active_code) {
-        $data['active_code'] = $active_code;
+        $body_data['active_code'] = $active_code;
 
-        $this->load->view('common/layouts/header');
-        $this->load->view('common/pages/change_password', $data);
+        $this->load->view('common/layouts/header', $this->header_data);
+        $this->load->view('common/pages/change_password', $body_data);
         $this->load->view('common/layouts/footer');
     }
 
@@ -121,7 +125,7 @@ class Auth extends CI_Controller {
         
         $this->session->set_flashdata('flash_data', $this->flash_data);
 
-        $this->load->view('common/layouts/header');
+        $this->load->view('common/layouts/header', $this->header_data);
         $this->load->view('common/pages/forgot');
         $this->load->view('common/layouts/footer');
     }
@@ -154,7 +158,7 @@ class Auth extends CI_Controller {
         
         $this->session->set_flashdata('flash_data', $this->flash_data);
 
-        $this->load->view('common/layouts/header');
+        $this->load->view('common/layouts/header', $this->header_data);
         $this->load->view('common/pages/signup');
         $this->load->view('common/layouts/footer');
     }
@@ -164,17 +168,24 @@ class Auth extends CI_Controller {
             $this->flash_data['alerts']['success'][] = 'Successfully activated. Please login.';
             $this->session->set_flashdata('flash_data', $this->flash_data);
     
-            $this->load->view('common/layouts/header');
+            $this->load->view('common/layouts/header', $this->header_data);
             $this->load->view('common/pages/login');
             $this->load->view('common/layouts/footer');
         } else {
             $this->flash_data['alerts']['error'][] = 'Fail Activation!';
     
-            $this->load->view('common/layouts/header');
+            $this->load->view('common/layouts/header', $this->header_data);
             $this->load->view('common/pages/signup');
             $this->load->view('common/layouts/footer');
         }
 
+    }
+
+    public function terms() {
+        $this->header_data['background_color'] = 'white';
+        $this->load->view('common/layouts/header', $this->header_data);
+        $this->load->view('common/pages/terms');
+        $this->load->view('common/layouts/footer');
     }
 
     public function logout() {
@@ -182,6 +193,6 @@ class Auth extends CI_Controller {
         $this->session->unset_userdata('name');
         $this->session->unset_userdata('avatar');
         
-        redirect('login');
+        redirect('../login');
     }
 }

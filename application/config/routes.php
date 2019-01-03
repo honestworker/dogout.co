@@ -69,6 +69,7 @@ if ($method == 'GET' || $method == 'POST') {
     $route['change_password'] = 'auth/changeAdminPassword';
 }
 if ($method == 'GET') {
+    $route['terms'] = 'auth/terms';
     $route['logout'] = 'auth/logout';
     $route['active/(:any)'] = 'auth/active/$1';
     $route['change/(:any)'] = 'auth/changePassword/$1';
