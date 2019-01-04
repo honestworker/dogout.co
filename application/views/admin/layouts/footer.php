@@ -44,6 +44,11 @@
 <script src="<?php echo base_url();?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- Growl -->
 <script src="<?php echo base_url();?>assets/bower_components/bootstrap-growl-master/jquery.bootstrap-growl.min.js"></script>
+<!-- Rating -->
+<script src="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/js/star-rating.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/themes/krajee-fa/theme.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/themes/krajee-svg/theme.js"></script>
+<script src="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/themes/krajee-uni/theme.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

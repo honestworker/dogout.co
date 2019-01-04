@@ -78,6 +78,7 @@ if ($method == 'GET') {
 // Admin
 if ($method == 'GET') {
     $route['dashboard'] = 'admin';
+
     // Admin Account Management
     $route['admins'] = 'admin/getAllAdmins';
     // User Account Management
@@ -86,6 +87,19 @@ if ($method == 'GET') {
     $route['users/active/(:any)'] = 'admin/activeUser/$1';
     $route['users/disable/(:any)'] = 'admin/disableUser/$1';
     $route['users/delete/(:any)'] = 'admin/deleteUser/$1';
+    
+    // Reports Management
+    $route['appreviews'] = 'admin/getAllAppReviews';
+    $route['nondogfriendlys'] = 'admin/getAllNonDogFriendlys';
+
+    $route['appreview/delete/(:any)'] = 'admin/deleteAppReview/$1';
+    $route['nondogfriendly/delete/(:any)'] = 'admin/deleteNonDogFriendly/$1';
+    
+    $route['appreview/(:any)/(:any)'] = 'admin/getAppReview/$1/$2';
+    $route['nondogfriendly/(:any)/(:any)'] = 'admin/getNonDogFriendly/$1/$2';
+    
+    $route['appreviews/delete/(:any)/(:any)'] = 'admin/deleteAppReviews/$1/$2';
+    $route['nondogfriendlys/delete/(:any)/(:any)'] = 'admin/deleteNonDogFriendlys/$1/$2';
 }
 
 /* 
@@ -103,4 +117,10 @@ if ($method == 'POST') {
     
     $route['api/forgot_password'] = 'api/forgotPassword';
     $route['api/change_password'] = 'api/changePassword';
+    
+    $route['api/report_app_review'] = 'api/reportAppReview';
+    $route['api/report_non_dogfriendly'] = 'api/reportNonDogFriendly';
+    
+    $route['api/get_app_review'] = 'api/getAppReview';
+    $route['api/get_non_dogfriendly'] = 'api/getNonDogFriendly';
 }

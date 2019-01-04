@@ -76,7 +76,8 @@
 }
 
 .skin-dogout .user-panel > .info,
-.skin-dogout .user-panel > .info > a {
+.skin-dogout .user-panel > .info > a, .content-header > .breadcrumb {
+  font-size: 13px;
   color: #444444;
 }
 
@@ -124,6 +125,11 @@
 
 .skin-dogout .sidebar-menu .treeview-menu > li > a {
   color: #777777;
+  font-size: 15px;
+}
+
+.skin-dogout .sidebar-menu .treeview > a > span {
+  font-size: 15px;
 }
 
 .skin-dogout .sidebar-menu .treeview-menu > li.active > a,

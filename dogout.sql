@@ -19,21 +19,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u900336547_malug`
+-- Database: `dogoutco`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ratings`
+-- Table structure for table `reports`
 --
 
-CREATE TABLE `ratings` (
+CREATE TABLE `reports` (
   `id` int(11) NOT NULL,
-  `driver_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `rate` int(11) NOT NULL,
-  `comment` text COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'App Review',
+  `place` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -66,6 +68,7 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `role` int(10) UNSIGNED DEFAULT NULL,
   `salt` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -77,14 +80,6 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `role`, `salt`, `password`, `token`, `email_code`, `password_code`, `status`, `activation_code`, `created_at`, `updated_at`) VALUES
-(1, 'honestworker818@gmail.com', 1, '@Vam#LpoAf', '0a7e23ec6198f2645fb34f83fd7788d8', NULL, NULL, '', 'activated', '123', '2018-12-25 16:38:09', '2018-12-25 16:38:09'),
-(2, 'janghaoling@gmail.com', 2, 'iF#ezCRN%k', 'e8de70f6e30734a8c086c62ca71fe162', 'zyBamDewsEEpKayahiwoDZIlsITql@XJFEBYu#vReBYJJiBRRTsotTJRDEbjmQzI#hKEptLfNHiZBl!eSVNLZgntlXHAJSkTbqvx', '50285', '', 'activated', NULL, '2018-12-25 18:03:36', '2018-12-26 02:18:13');
 
 --
 -- Indexes for dumped tables
@@ -113,9 +108,9 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `ratings`
+-- AUTO_INCREMENT for table `reports`
 --
-ALTER TABLE `ratings`
+ALTER TABLE `reports`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

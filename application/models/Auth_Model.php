@@ -38,7 +38,7 @@ class Auth_Model extends CI_Model {
             if ( !$this->db->get_where('users', array('token' => $token))->result() ) {
                 $repeat = 0;
             }
-        }        
+        } 
         
         return $token;
     }
@@ -55,12 +55,16 @@ class Auth_Model extends CI_Model {
     public function createUser( $data ) {
         $response = array(
             'user' => null,
-            'error_type' => -2
+            'error_type' => -3
         );
+		if ( $user_row = $this->db->get_where('users', array('name' => $data['name'], 'email !=' => $data['email'], 'role' => $data['role']))->result() ) {
+            $response['error_type'] = -1; // Already registered
+            return $response;
+        }
 		if ( $user_row = $this->db->get_where('users', array('email' => $data['email'], 'role' => $data['role']))->result() ) {
             $user = $user_row[0];
             if ($user->status == 'activated') {
-                $response['error_type'] = -1; // Already registered
+                $response['error_type'] = -2; // Already registered
                 return $response;
             }
 

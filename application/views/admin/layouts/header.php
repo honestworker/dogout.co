@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/Ionicons/css/ionicons.min.css">
     <!-- DataTables -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+    <!-- Rating Style -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/css/star-rating.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/themes/krajee-fa/theme.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/themes/krajee-svg/theme.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/bower_components/bootstrap-star-rating/themes/krajee-uni/theme.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -69,13 +74,13 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="<?php echo (base_url() . 'public/images/users/no_avatar.jpg'); ?>" class="user-image" alt="User Image">
+                        <img src="<?php echo (base_url() . 'public/images/users/no_avatar.png'); ?>" class="user-image" alt="User Image">
                         <span class="hidden-xs"><?php echo $this->session->userdata('name'); ?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="<?php echo (base_url() . 'public/images/users/no_avatar.jpg'); ?>" class="img-circle" alt="User Image">
+                                <img src="<?php echo (base_url() . 'public/images/users/no_avatar.png'); ?>" class="img-circle" alt="User Image">
                                 <p>
                                     <?php echo $this->session->userdata('name'); ?>
                                 </p>
