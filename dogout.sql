@@ -34,6 +34,8 @@ CREATE TABLE `reports` (
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'App Review',
   `place` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `country` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `rating` int(11) NOT NULL,
   `comment` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime NOT NULL,

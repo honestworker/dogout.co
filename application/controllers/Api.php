@@ -317,4 +317,30 @@ class Api extends CI_Controller {
         echo json_encode($this->response);
         exit(-1);
     }
+
+    public function reportNewLocation() {
+        $jsonRequest = json_decode(file_get_contents('php://input'), true);
+        if ( !isset($jsonRequest['token']) || !isset($jsonRequest['place']) || !isset($jsonRequest['address']) || !isset($jsonRequest['country']) || !isset($jsonRequest['city']) || !isset($jsonRequest['comment']) ) {
+            echo json_encode($this->response);
+            exit(-1);
+        }
+        if ( strlen($jsonRequest['place']) > 255 || strlen($jsonRequest['address']) > 255 || strlen($jsonRequest['country']) > 255 || strlen($jsonRequest['city']) > 255 || strlen($jsonRequest['comment']) > 255 ) {
+            $this->response['error_type'] = 'length_error';
+            echo json_encode($this->response);
+            exit(-1);
+        }
+
+        $result = $this->User_Model->reportNewLocation(strip_tags(trim($jsonRequest['token'])), strip_tags(trim($jsonRequest['place'])), strip_tags(trim($jsonRequest['address'])),  strip_tags(trim($jsonRequest['country'])),  strip_tags(trim($jsonRequest['city'])), strip_tags(trim($jsonRequest['comment'])));
+        if ( $result == 0 ) {
+            $this->response['status'] = 'success';
+            $this->response['error_type'] = '';
+        } else if ( $result == -1 ) {
+            $this->response['error_type'] = 'token_error';
+        } else if ( $result == -2 ) {
+            $this->response['error_type'] = 'registered';
+        }
+        
+        echo json_encode($this->response);
+        exit(-1);
+    }
 }

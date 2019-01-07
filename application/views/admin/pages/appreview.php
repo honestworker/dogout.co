@@ -4,7 +4,7 @@
     <div class="col-xs-12">
         <div class="box">
         <div class="box-header">
-            <h3 class="box-title">App Reviews</h3>
+            <h3 class="box-title">App Review</h3>
             <br><br><br><h3 class="box-title">Place: <?php echo $data['place']; ?></h3>
             <br><h3 class="box-title">Address: <?php echo $data['address']; ?></h3>
             <br><h3 class="box-title">Total: <?php echo $data['total']; ?></h3>
@@ -36,7 +36,7 @@
                     <td><?php echo $report['comment']; ?></td>
                     <td><?php echo $report['created_at']; ?></td>
                     <td>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger" onclick="viewDeleteReportModal('appreview', $(this).parent().parent().data('id'))"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             <?php
@@ -80,7 +80,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger delete-appreview">Delete</button>
+                <button type="button" class="btn btn-danger delete-appreview" onclick="deleteReport('appreview')">Delete</button>
             </div>
         </div>
         <!-- /.modal-content -->

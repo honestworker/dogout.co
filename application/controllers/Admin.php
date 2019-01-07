@@ -39,6 +39,13 @@ class Admin extends CI_Controller {
                 redirect('../login');
             }
         }
+        if ( !$this->User_Model->isActivated($user_data['id']) ) {
+            $this->session->unset_userdata('id');
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('avatar');
+            
+            redirect('../login');
+        }
         
         $data['users_counts'] = $this->User_Model->getUserCounts();
         
@@ -48,7 +55,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-	public function getAllAdmins() {
+	public function middleware( $action ) {
         $user_data = $this->session->get_userdata();
         if ( !$user_data ) {
             redirect('../login');
@@ -57,7 +64,58 @@ class Admin extends CI_Controller {
                 redirect('../login');
             }
         }
-        
+        if ( !$this->User_Model->isActivated($user_data['id']) ) {
+            $this->session->unset_userdata('id');
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('avatar');
+            
+            redirect('../login');
+        }
+
+        $this->$action();
+    }
+
+	public function middleware1( $action, $param1 ) {
+        $user_data = $this->session->get_userdata();
+        if ( !$user_data ) {
+            redirect('../login');
+        } else {
+            if ( !isset($user_data['id']) ) {
+                redirect('../login');
+            }
+        }
+        if ( !$this->User_Model->isActivated($user_data['id']) ) {
+            $this->session->unset_userdata('id');
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('avatar');
+            
+            redirect('../login');
+        }
+
+        $this->$action( $param1 );
+    }
+
+	public function middleware2( $action, $param1, $param2 ) {
+        $user_data = $this->session->get_userdata();
+        if ( !$user_data ) {
+            redirect('../login');
+        } else {
+            if ( !isset($user_data['id']) ) {
+                redirect('../login');
+            }
+        }
+        if ( !$this->User_Model->isActivated($user_data['id']) ) {
+            $this->session->unset_userdata('id');
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('avatar');
+            
+            redirect('../login');
+        }
+
+        $this->$action( $param1, $param2 );
+    }
+
+	private function getAllAdmins() {        
         $data['admins'] = $this->User_Model->getUsers(1);
         
         $this->load->view('admin/layouts/header');
@@ -66,16 +124,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-	public function getAllUsers() {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
+	public function getAllUsers() {        
         $data['users'] = $this->User_Model->getUsers(2);
         
         $this->load->view('admin/layouts/header');
@@ -84,17 +133,8 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-	public function activeUser($user_id) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
-        $result = $this->User_Model->activeUser($user_id);
+	public function activeUser( $user_id ) {
+        $result = $this->User_Model->activeUser( $user_id );
         if ($result == 0) {
             $this->response['error_type'] = '';
             $this->response['status'] = 'success';
@@ -116,17 +156,8 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-	public function disableUser($user_id) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
-        $result = $this->User_Model->disableUser($user_id);
+	private function disableUser( $user_id ) {        
+        $result = $this->User_Model->disableUser( $user_id );
         if ($result == 0) {
             $this->response['error_type'] = '';
             $this->response['status'] = 'success';
@@ -145,21 +176,12 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-	public function deleteUser($user_id) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
-        $result = $this->User_Model->deleteUser($user_id);
+	private function deleteUser( $user_id ) {        
+        $result = $this->User_Model->deleteUser( $user_id );
         if ($result == 0) {
             $this->response['error_type'] = '';
             $this->response['status'] = 'success';
-            $this->flash_data['alerts']['success'][] = 'The user has been disabled successfully.';
+            $this->flash_data['alerts']['success'][] = 'The user has been deleted successfully.';
         } else if ($result == -1) {
             $this->response['error_type'] = 'no_user';
             $this->response['message'] = 'Can not find this user.';
@@ -171,16 +193,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-	public function getAllAppReviews() {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
+	private function getAllAppReviews() {
         $data['reports'] = $this->User_Model->getAllAppReviews();
         
         $this->load->view('admin/layouts/header');
@@ -188,35 +201,8 @@ class Admin extends CI_Controller {
         $this->load->view('admin/pages/appreviews', $data);
         $this->load->view('admin/layouts/footer');
     }
-
-	public function getAllNonDogFriendlys() {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
-        $data['reports'] = $this->User_Model->getAllNonDogFriendlys();
-        
-        $this->load->view('admin/layouts/header');
-        $this->load->view('admin/layouts/siderbar');
-        $this->load->view('admin/pages/nondogfriendlys', $data);
-        $this->load->view('admin/layouts/footer');
-    }
     
-	public function getAppReview($place, $address) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
+	private function getAppReview( $place, $address ) {        
         $data['data'] = $this->User_Model->getAppReviews(urldecode($place), urldecode($address));
         
         $this->load->view('admin/layouts/header');
@@ -225,34 +211,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
 
-	public function getNonDogFriendly($place, $address) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
-        $data['data'] = $this->User_Model->getNonDogFriendlys(urldecode($place), urldecode($address));
-        
-        $this->load->view('admin/layouts/header');
-        $this->load->view('admin/layouts/siderbar');
-        $this->load->view('admin/pages/nondogfriendly', $data);
-        $this->load->view('admin/layouts/footer');
-    }
-
-    public function deleteAppReviews($place, $address) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
+    private function deleteAppReviews( $place, $address ) {
         $result = $this->User_Model->deleteReports('App Review', urldecode($place), urldecode($address));
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -269,42 +228,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-    public function deleteNonDogFriendlys($place, $address) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
-        $result = $this->User_Model->deleteReports('Non DogFriendly', urldecode($place), urldecode($address));
-        if ($result == 0) {
-            $this->response['error_type'] = '';
-            $this->response['status'] = 'success';
-            $this->flash_data['alerts']['success'][] = 'The non dogfriendlys have been deleted successfully.';
-        } else if ($result == -1) {
-            $this->response['error_type'] = 'no_nondogfriendlys';
-            $this->response['message'] = 'Can not find these non dogfriendlys.';
-        }
-        
-        $this->session->set_flashdata('flash_data', $this->flash_data);
-        
-        echo json_encode($this->response);
-        exit(-1);
-    }
-
-    public function deleteAppReview($id) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        
+    private function deleteAppReview( $id ) {
         $result = $this->User_Model->deleteReport('App Review', $id);
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -321,16 +245,42 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-    public function deleteNonDogFriendly($id) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
+	private function getAllNonDogFriendlys() {
+        $data['reports'] = $this->User_Model->getAllNonDogFriendlys();
+        
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/siderbar');
+        $this->load->view('admin/pages/nondogfriendlys', $data);
+        $this->load->view('admin/layouts/footer');
+    }
+
+	private function getNonDogFriendly( $place, $address ) {
+        $data['data'] = $this->User_Model->getNonDogFriendlys(urldecode($place), urldecode($address));
+        
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/siderbar');
+        $this->load->view('admin/pages/nondogfriendly', $data);
+        $this->load->view('admin/layouts/footer');
+    }
+
+    private function deleteNonDogFriendlys( $place, $address ) {
+        $result = $this->User_Model->deleteReports('Non DogFriendly', urldecode($place), urldecode($address));
+        if ($result == 0) {
+            $this->response['error_type'] = '';
+            $this->response['status'] = 'success';
+            $this->flash_data['alerts']['success'][] = 'The non dogfriendlys have been deleted successfully.';
+        } else if ($result == -1) {
+            $this->response['error_type'] = 'no_nondogfriendlys';
+            $this->response['message'] = 'Can not find these non dogfriendlys.';
         }
         
+        $this->session->set_flashdata('flash_data', $this->flash_data);
+        
+        echo json_encode($this->response);
+        exit(-1);
+    }
+
+    private function deleteNonDogFriendly( $id ) {
         $result = $this->User_Model->deleteReport('Non DogFriendly', $id);
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -339,6 +289,58 @@ class Admin extends CI_Controller {
         } else if ($result == -1) {
             $this->response['error_type'] = 'no_nondogfriendly';
             $this->response['message'] = 'Can not find this non dogfriendly.';
+        }
+        
+        $this->session->set_flashdata('flash_data', $this->flash_data);
+        
+        echo json_encode($this->response);
+        exit(-1);
+    }
+    
+	private function getAllNewLocations() {        
+        $data['reports'] = $this->User_Model->getAllNewLocations();
+        
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/siderbar');
+        $this->load->view('admin/pages/newlocations', $data);
+        $this->load->view('admin/layouts/footer');
+    }
+    
+	private function getNewLocation( $place, $address ) {        
+        $data['data'] = $this->User_Model->getNewLocation(urldecode($place), urldecode($address));
+        
+        $this->load->view('admin/layouts/header');
+        $this->load->view('admin/layouts/siderbar');
+        $this->load->view('admin/pages/newlocation', $data);
+        $this->load->view('admin/layouts/footer');
+    }
+    
+    private function deleteNewLocations( $place, $address ) {        
+        $result = $this->User_Model->deleteReports('New Location', urldecode($place), urldecode($address));
+        if ($result == 0) {
+            $this->response['error_type'] = '';
+            $this->response['status'] = 'success';
+            $this->flash_data['alerts']['success'][] = 'The dog-friendly locations have been deleted successfully.';
+        } else if ($result == -1) {
+            $this->response['error_type'] = 'no_newlocations';
+            $this->response['message'] = 'Can not find these dog-friendly locations.';
+        }
+        
+        $this->session->set_flashdata('flash_data', $this->flash_data);
+        
+        echo json_encode($this->response);
+        exit(-1);
+    }
+    
+    private function deleteNewLocation( $id ) {        
+        $result = $this->User_Model->deleteReport('New Location', $id);
+        if ($result == 0) {
+            $this->response['error_type'] = '';
+            $this->response['status'] = 'success';
+            $this->flash_data['alerts']['success'][] = 'The dog-friendly location has been deleted successfully.';
+        } else if ($result == -1) {
+            $this->response['error_type'] = 'no_appreview';
+            $this->response['message'] = 'Can not find this dog-friendly location.';
         }
         
         $this->session->set_flashdata('flash_data', $this->flash_data);

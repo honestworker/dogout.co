@@ -80,26 +80,30 @@ if ($method == 'GET') {
     $route['dashboard'] = 'admin';
 
     // Admin Account Management
-    $route['admins'] = 'admin/getAllAdmins';
+    $route['admins'] = 'admin/middleware/getAllAdmins';
     // User Account Management
-    $route['users'] = 'admin/getAllUsers';
+    $route['users'] = 'admin/middleware/getAllUsers';
     
-    $route['users/active/(:any)'] = 'admin/activeUser/$1';
-    $route['users/disable/(:any)'] = 'admin/disableUser/$1';
-    $route['users/delete/(:any)'] = 'admin/deleteUser/$1';
+    $route['users/active/(:any)'] = 'admin/middleware1/activeUser/$1';
+    $route['users/disable/(:any)'] = 'admin/middleware1/disableUser/$1';
+    $route['users/delete/(:any)'] = 'admin/middleware1/deleteUser/$1';
     
     // Reports Management
-    $route['appreviews'] = 'admin/getAllAppReviews';
-    $route['nondogfriendlys'] = 'admin/getAllNonDogFriendlys';
+    $route['appreviews'] = 'admin/middleware/getAllAppReviews';
+    $route['nondogfriendlys'] = 'admin/middleware/getAllNonDogFriendlys';
+    $route['newlocations'] = 'admin/middleware/getAllNewLocations';
 
-    $route['appreview/delete/(:any)'] = 'admin/deleteAppReview/$1';
-    $route['nondogfriendly/delete/(:any)'] = 'admin/deleteNonDogFriendly/$1';
+    $route['appreview/delete/(:any)'] = 'admin/middleware1/deleteAppReview/$1';
+    $route['nondogfriendly/delete/(:any)'] = 'admin/middleware1/deleteNonDogFriendly/$1';
+    $route['newlocation/delete/(:any)'] = 'admin/middleware1/deleteNewLocation/$1';
     
-    $route['appreview/(:any)/(:any)'] = 'admin/getAppReview/$1/$2';
-    $route['nondogfriendly/(:any)/(:any)'] = 'admin/getNonDogFriendly/$1/$2';
-    
-    $route['appreviews/delete/(:any)/(:any)'] = 'admin/deleteAppReviews/$1/$2';
-    $route['nondogfriendlys/delete/(:any)/(:any)'] = 'admin/deleteNonDogFriendlys/$1/$2';
+    $route['appreview/(:any)/(:any)'] = 'admin/middleware2/getAppReview/$1/$2';
+    $route['nondogfriendly/(:any)/(:any)'] = 'admin/middleware2/getNonDogFriendly/$1/$2';
+    $route['newlocation/(:any)/(:any)'] = 'admin/middleware2/getNewLocation/$1/$2';
+        
+    $route['appreviews/delete/(:any)/(:any)'] = 'admin/middleware2/deleteAppReviews/$1/$2';
+    $route['nondogfriendlys/delete/(:any)/(:any)'] = 'admin/middleware2/deleteNonDogFriendlys/$1/$2';
+    $route['newlocations/delete/(:any)/(:any)'] = 'admin/middleware2/deleteNewLocations/$1/$2';
 }
 
 /* 
@@ -120,6 +124,7 @@ if ($method == 'POST') {
     
     $route['api/report_app_review'] = 'api/reportAppReview';
     $route['api/report_non_dogfriendly'] = 'api/reportNonDogFriendly';
+    $route['api/report_new_location'] = 'api/reportNewLocation';
     
     $route['api/get_app_review'] = 'api/getAppReview';
     $route['api/get_non_dogfriendly'] = 'api/getNonDogFriendly';

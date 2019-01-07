@@ -9,6 +9,8 @@ class Auth_Model extends CI_Model {
         
         $this->load->library('session');
         $this->load->library('email');
+        
+        $this->load->model('Smtp_Model', 'smtp');
     }
     
     private function generate_code($len = 30, $type = 'heavy') {
@@ -74,7 +76,7 @@ class Auth_Model extends CI_Model {
             if ($data['role'] == 2) {
                 $code = $this->generate_code(5, 'light');
                 $this->db->update('users', array('email_code' => $code), array('id' => $user->id) );
-                $this->sendEmailVerifyCode($user->email, $code);
+                $this->smtp->sendEmailVerifyCode($user->email, $code);
             }
 
             $response['error_type'] = 0;

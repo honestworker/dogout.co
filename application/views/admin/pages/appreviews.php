@@ -30,8 +30,8 @@
                     <td><?php echo $report->count; ?></td>
                     <td><?php echo $report->updated_at; ?></td>
                     <td>
-                        <button type="button" class="btn btn-primary"><i class="fa fa-eye"></i></button>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-primary" onclick="viewReport('appreview', $(this).parent().parent().data('place'), $(this).parent().parent().data('address'))"><i class="fa fa-eye"></i></button>
+                        <button type="button" class="btn btn-danger" onclick="viewDeleteReportsModal('appreviews', $(this).parent().parent().data('place'), $(this).parent().parent().data('address'))"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             <?php
@@ -75,7 +75,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger delete-appreviews">Delete</button>
+                <button type="button" class="btn btn-danger delete-appreviews" onclick="deleteReports('appreviews')">Delete</button>
             </div>
         </div>
         <!-- /.modal-content -->

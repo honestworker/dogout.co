@@ -39,7 +39,7 @@ if ($admin_url_array) {
                     <li class="<?php if ($main_url == 'users') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>users"><i class="fa fa-user-o"></i> Users</a></li>
                 </ul>
             </li>
-            <li class="treeview <?php if ($main_url == 'appreviews' || $main_url == 'nondogfriendlys' || $main_url == 'appreview' || $main_url == 'nondogfriendly') { echo 'active menu-open'; } ?>">
+            <li class="treeview <?php if ($main_url == 'appreviews' || $main_url == 'appreview' || $main_url == 'nondogfriendlys' || $main_url == 'nondogfriendly' || $main_url == 'newlocations' || $main_url == 'newlocation') { echo 'active menu-open'; } ?>">
                 <a href="#">
                     <i class="fa fa-bell"></i> <span>Reports</span>
                     <span class="pull-right-container">
@@ -49,6 +49,7 @@ if ($admin_url_array) {
                 <ul class="treeview-menu">
                     <li class="<?php if ($main_url == 'appreviews' || $main_url == 'appreview') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>appreviews"><i class="fa fa-check"></i> App Reviews</a></li>
                     <li class="<?php if ($main_url == 'nondogfriendlys' || $main_url == 'nondogfriendly') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>nondogfriendlys"><i class="fa fa-bug"></i> Non DogFriendlys</a></li>
+                    <li class="<?php if ($main_url == 'newlocations' || $main_url == 'newlocation') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>newlocations"><i class="fa fa-map-marker"></i> New Locations</a></li>
                 </ul>
             </li>
         </ul>
@@ -82,7 +83,7 @@ if ($admin_url_array) {
                 }
             ?>
             <?php 
-                if ($main_url == 'appreviews' || $main_url == 'appreview' || $main_url == 'nondogfriendlys' || $main_url == 'nondogfriendly') {
+                if ($main_url == 'appreviews' || $main_url == 'appreview' || $main_url == 'nondogfriendlys' || $main_url == 'nondogfriendly' || $main_url == 'newlocations' || $main_url == 'newlocation') {
             ?>
             <li class="active">
             <?php
@@ -90,6 +91,8 @@ if ($admin_url_array) {
                     ?><a href="<?php echo base_url();?>appreviews">App Reviews</a><?php
                 } else if ($main_url == 'nondogfriendlys' || $main_url == 'nondogfriendly') {
                     ?><a href="<?php echo base_url();?>nondogfriendlys">Non DogFriendlys</a><?php
+                } else if ($main_url == 'newlocations' || $main_url == 'newlocation') {
+                    ?><a href="<?php echo base_url();?>newlocations">New Locations</a><?php
                 }
             ?>
             </li>

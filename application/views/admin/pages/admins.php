@@ -29,15 +29,15 @@
                         <?php
                         if ($admin->status == 'activated') {
                         ?>
-                        <button type="button" class="btn btn-warning"><i class="fa fa-check"></i></button>
+                        <button type="button" class="btn btn-warning" onclick="viewActionUserModal('admin', 'disable', $(this).parent().parent().data('id'))"><i class="fa fa-check"></i></button>
                         <?php
                         } else {
                         ?>
-                            <button type="button" class="btn btn-success"><i class="fa fa-check"></i></button>
+                            <button type="button" class="btn btn-success" onclick="viewActionUserModal('admin', 'active', $(this).parent().parent().data('id'))"><i class="fa fa-check"></i></button>
                         <?php
                         }
                         ?>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger" onclick="viewActionUserModal('admin', 'delete', $(this).parent().parent().data('id'))"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             <?php
@@ -79,7 +79,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary active-admin">Active</button>
+                <button type="button" class="btn btn-primary active-admin" onclick="actionUser('admin', 'active')">Active</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -102,7 +102,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-warning disable-admin">Disable</button>
+                <button type="button" class="btn btn-warning disable-admin" onclick="actionUser('admin', 'disable')">Disable</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -125,7 +125,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger delete-admin">Delete</button>
+                <button type="button" class="btn btn-danger delete-admin" onclick="actionUser('admin', 'delete')">Delete</button>
             </div>
         </div>
         <!-- /.modal-content -->

@@ -4,16 +4,18 @@
     <div class="col-xs-12">
         <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Non DogFriendly</h3></p>
+            <h3 class="box-title">New Location</h3></p>
             <br><br><h3 class="box-title">Place: <?php echo $data['place']; ?></h3>
             <br><h3 class="box-title">Address: <?php echo $data['address']; ?></h3>
+            <br><h3 class="box-title">Country: <?php echo $data['country']; ?></h3>
+            <br><h3 class="box-title">City: <?php echo $data['city']; ?></h3>
             <br><h3 class="box-title">Total: <?php echo $data['total']; ?></h3>
             <input type="hidden"  value="<?php echo $data['place']; ?>" id="report_place">
             <input type="hidden"  value="<?php echo $data['address']; ?>" id="report_address">
         </div>
         <!-- /.box-header -->
-        <div class="box-body nondogfriendly-table">
-            <table id="nondogfriendly_table" class="table table-bordered table-striped">
+        <div class="box-body newlocation-table">
+            <table id="newlocation_table" class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th>User Name</th>
@@ -33,7 +35,7 @@
                     <td><?php echo $report['comment']; ?></td>
                     <td><?php echo $report['created_at']; ?></td>
                     <td>
-                        <button type="button" class="btn btn-danger" onclick="viewDeleteReportModal('nondogfriendly', $(this).parent().parent().data('id'))"><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-danger" onclick="viewDeleteReportModal('newlocation', $(this).parent().parent().data('id'))"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             <?php
@@ -61,22 +63,22 @@
 </section>
 <!-- /.content -->
 
-<!-- Delete Non DogFriendl Modal -->
-<div class="modal modal-info fade" id="nondogfriendly-delete-modal">
+<!-- Delete New Location Modal -->
+<div class="modal modal-info fade" id="newlocation-delete-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-danger">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title">Delete Non DogFriendly</h4>
+                <h4 class="modal-title">Delete New Location</h4>
             </div>
             <div class="modal-body">
-                <p>Do you want to delte this non dogfriendly?</p>
+                <p>Do you want to delte this new location?</p>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger delete-nondogfriendly" onclick="deleteReport('nondogfriendly')">Delete</button>
+                <button type="button" class="btn btn-danger delete-newlocation" onclick="deleteReport('newlocation')">Delete</button>
             </div>
         </div>
         <!-- /.modal-content -->
