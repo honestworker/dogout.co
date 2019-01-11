@@ -26,7 +26,13 @@
                     <td><?php echo $user->name; ?></td>
                     <td><?php echo $user->email; ?></td>
                     <td><?php echo $user->created_at; ?></td>
-                    <td><?php echo $user->status; ?></td>
+                    <td>
+                    <?php if ( $user->status == 'activated' ) { ?>
+                        <span class="label label-success" style="font-size: 85%;"><?php echo $user->status; ?></span>
+                    <?php } else { ?>
+                        <span class="label label-warning" style="font-size: 85%;"><?php echo $user->status; ?></span>
+                    <?php } ?>
+                    </td>
                     <td>
                         <?php
                         if ($user->status == 'disabled') {

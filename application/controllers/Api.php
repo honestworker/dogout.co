@@ -214,7 +214,7 @@ class Api extends CI_Controller {
             echo json_encode($this->response);
             exit(-1);
         }
-        if ( strlen($jsonRequest['place']) > 255 || strlen($jsonRequest['address']) > 255 || strlen($jsonRequest['comment']) > 255 ) {
+        if ( strlen($jsonRequest['place']) < 1 || strlen($jsonRequest['place']) > 255 || strlen($jsonRequest['address']) < 1 || strlen($jsonRequest['address']) > 255 || strlen($jsonRequest['comment']) > 255 ) {
             $this->response['error_type'] = 'length_error';
             echo json_encode($this->response);
             exit(-1);
@@ -240,7 +240,7 @@ class Api extends CI_Controller {
             echo json_encode($this->response);
             exit(-1);
         }
-        if ( strlen($jsonRequest['place']) > 255 || strlen($jsonRequest['address']) > 255 || strlen($jsonRequest['comment']) > 255 ) {
+        if ( strlen($jsonRequest['place']) < 1 || strlen($jsonRequest['place']) > 255 || strlen($jsonRequest['address']) < 1 || strlen($jsonRequest['address']) > 255 || strlen($jsonRequest['comment']) > 255 ) {
             $this->response['error_type'] = 'length_error';
             echo json_encode($this->response);
             exit(-1);
@@ -324,7 +324,7 @@ class Api extends CI_Controller {
             echo json_encode($this->response);
             exit(-1);
         }
-        if ( strlen($jsonRequest['place']) > 255 || strlen($jsonRequest['address']) > 255 || strlen($jsonRequest['country']) > 255 || strlen($jsonRequest['city']) > 255 || strlen($jsonRequest['comment']) > 255 ) {
+        if (  strlen($jsonRequest['place']) < 1 || strlen($jsonRequest['place']) > 255 ||  strlen($jsonRequest['address']) < 1 || strlen($jsonRequest['address']) > 255 || strlen($jsonRequest['country']) > 255 || strlen($jsonRequest['city']) > 255 || strlen($jsonRequest['comment']) > 255 ) {
             $this->response['error_type'] = 'length_error';
             echo json_encode($this->response);
             exit(-1);

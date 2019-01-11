@@ -2,8 +2,6 @@ $(function () {
     /*
      * Admins Page
      */
-    var admin_id = 0;
-
     // Datatable
     $('#admin_table').DataTable({
         'paging'      : true,
@@ -13,13 +11,12 @@ $(function () {
         'info'        : true,
         'autoWidth'   : true,
         'scrollY'     : true,
+        'order'       : [[ 1, "desc" ]]
     });
         
     /*
      * Users Page
      */
-    var user_id = 0;
-
     // Datatable
     $('#user_table').DataTable({
         'paging'      : true,
@@ -29,6 +26,7 @@ $(function () {
         'info'        : true,
         'autoWidth'   : true,
         'scrollY'     : true,
+        'order'       : [[ 2, "desc" ]]
     });
         
     /*
@@ -60,6 +58,7 @@ $(function () {
             { width: 220, targets: 2 }
         ],
         'autoWidth'   : true,
+        'order'       : [[ 4, "desc" ]]
     });
     
     /*
@@ -77,6 +76,7 @@ $(function () {
             { width: 220, targets: 2 }
         ],
         'autoWidth'   : true,
+        'order'       : [[ 3, "desc" ]]
     });
     
     /*
@@ -95,6 +95,7 @@ $(function () {
             { width: 220, targets: 2 }
         ],
         'autoWidth'   : true,
+        'order'       : [[ 4, "desc" ]]
     });
 
     /*
@@ -112,6 +113,7 @@ $(function () {
             { width: 220, targets: 2 }
         ],
         'autoWidth'   : true,
+        'order'       : [[ 3, "desc" ]]
     });
     
     /*
@@ -129,6 +131,7 @@ $(function () {
             { width: 220, targets: 2 }
         ],
         'autoWidth'   : true,
+        'order'       : [[ 5, "desc" ]]
     });
     
     /*
@@ -146,6 +149,7 @@ $(function () {
             { width: 220, targets: 2 }
         ],
         'autoWidth'   : true,
+        'order'       : [[ 3, "desc" ]]
     });
 });
 

@@ -530,8 +530,8 @@ class User_Model extends CI_Model {
         $response = array(
             'place' => $place,
             'address' => $address,
-            'country' => $country,
-            'city' => $city,
+            'country' => '',
+            'city' => '',
             'total' => 0,
             'reports' => []
         );

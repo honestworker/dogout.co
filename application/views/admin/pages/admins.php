@@ -24,7 +24,13 @@
                 <tr data-id="<?php echo $admin->id; ?>">
                     <td><?php echo $admin->email; ?></td>
                     <td><?php echo $admin->created_at; ?></td>
-                    <td><?php echo $admin->status; ?></td>
+                    <td>
+                    <?php if ( $admin->status == 'activated' ) { ?>
+                        <span class="label label-success" style="font-size: 85%;"><?php echo $admin->status; ?></span>
+                    <?php } else { ?>
+                        <span class="label label-warning" style="font-size: 85%;"><?php echo $admin->status; ?></span>
+                    <?php } ?>
+                    </td>
                     <td>
                         <?php
                         if ($admin->status == 'activated') {

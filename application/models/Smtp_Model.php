@@ -28,7 +28,7 @@ class Smtp_Model extends CI_Model {
         $this->message_review_email_footer = '</strong></div></td><td valign="top" width="100%" style="vertical-align:top;font-family:Helvetica,arial,sans-serif;font-size:16px;color:#222222;text-align:left;line-height:20px;border-collapse:collapse" align="left">';
         $this->message_review_footer = '</td></tr></tbody></table>';
 
-        $this->message_content_header = '<div style="margin-top: 20px; margin-bottom: 20px;">';
+        $this->message_content_header = '<div style="margin: 20px;">';
         $this->message_content_footer = '</div>';
 
         $this->message_text_header = '<div style="line-height:24px">';
