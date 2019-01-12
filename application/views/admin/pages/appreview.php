@@ -4,11 +4,18 @@
     <div class="col-xs-12">
         <div class="box">
         <div class="box-header">
-            <h3 class="box-title">App Review</h3>
-            <br><br><br><h3 class="box-title">Place: <?php echo $data['place']; ?></h3>
-            <br><h3 class="box-title">Address: <?php echo $data['address']; ?></h3>
-            <br><h3 class="box-title">Total: <?php echo $data['total']; ?></h3>
-            <br><h3 class="box-title"><input type="text" class="kv-gly-star rating-loading" value="<?php echo $data['rating']; ?>" data-size="md" title=""></h3>
+            <h3 class="box-title" style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;<b>App Review</b></h3>
+            <br><br>
+            <dl class="dl-horizontal">
+                <dt>Place:</dt>
+                <dd><?php echo $data['place']; ?></dd>
+                <dt>Address:</dt>
+                <dd><?php echo $data['address']; ?></dd>
+                <dt>Total:</dt>
+                <dd><?php echo $data['total']; ?></dd>
+                <dt>Rating:</dt>
+                <dd><input type="text" class="kv-gly-star rating-loading" value="<?php echo $data['rating']; ?>" data-size="md" title=""></dd>
+            </dl>
             <input type="hidden"  value="<?php echo $data['place']; ?>" id="report_place">
             <input type="hidden"  value="<?php echo $data['address']; ?>" id="report_address">
         </div>

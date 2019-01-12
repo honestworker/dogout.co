@@ -47,8 +47,8 @@ if ($admin_url_array) {
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="<?php if ($main_url == 'appreviews' || $main_url == 'appreview') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>appreviews"><i class="fa fa-check"></i> App Reviews</a></li>
-                    <li class="<?php if ($main_url == 'nondogfriendlys' || $main_url == 'nondogfriendly') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>nondogfriendlys"><i class="fa fa-bug"></i> Non DogFriendlys</a></li>
+                    <li class="<?php if ($main_url == 'appreviews' || $main_url == 'appreview') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>appreviews"><i class="fa fa-star"></i> App Reviews</a></li>
+                    <li class="<?php if ($main_url == 'nondogfriendlys' || $main_url == 'nondogfriendly') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>nondogfriendlys"><i class="fa fa-frown-o"></i> Non DogFriendlys</a></li>
                     <li class="<?php if ($main_url == 'newlocations' || $main_url == 'newlocation') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>newlocations"><i class="fa fa-map-marker"></i> New Locations</a></li>
                 </ul>
             </li>

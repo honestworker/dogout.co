@@ -211,6 +211,45 @@ class User_Model extends CI_Model {
     }
 
     /*
+    *  Get user counts by according the user role
+    */
+    public function getReports() {
+        $result = array(
+            'app_reviews_counts' => 0,
+            'app_reviews_total' => 0,
+            'non_dogfriendlys_counts' => 0,
+            'non_dogfriendlys_total' => 0,
+            'new_locations_counts' => 0,
+            'new_locations_total' => 0,
+        );
+        $report_rows = $this->db->select('id')->from('reports')->where('type', 'App Review')->group_by(array('place', 'address'))->get()->num_rows();
+        if ($report_rows) {
+            $result['app_reviews_counts'] = $report_rows;
+        }
+        $report_rows = $this->db->select('id')->from('reports')->where('type', 'App Review')->get()->num_rows();
+        if ($report_rows) {
+            $result['app_reviews_total'] = $report_rows;
+        }
+        $report_rows = $this->db->select('id')->from('reports')->where('type', 'Non DogFriendly')->group_by(array('place', 'address'))->get()->num_rows();
+        if ($report_rows) {
+            $result['non_dogfriendlys_counts'] = $report_rows;
+        }
+        $report_rows = $this->db->select('id')->from('reports')->where('type', 'Non DogFriendly')->get()->num_rows();
+        if ($report_rows) {
+            $result['non_dogfriendlys_total'] = $report_rows;
+        }
+        $report_rows = $this->db->select('id')->from('reports')->where('type', 'New Location')->group_by(array('place', 'address'))->get()->num_rows();
+        if ($report_rows) {
+            $result['new_locations_counts'] = $report_rows;
+        }
+        $report_rows = $this->db->select('id')->from('reports')->where('type', 'New Location')->get()->num_rows();
+        if ($report_rows) {
+            $result['new_locations_total'] = $report_rows;
+        }
+        return $result;
+    }
+
+    /*
     *  Report App Review to the Administrator Email
     */
     public function reportAppReview($token, $place, $address, $rating, $comment) {

@@ -47,7 +47,8 @@ class Admin extends CI_Controller {
             redirect('../login');
         }
         
-        $data['users_counts'] = $this->User_Model->getUserCounts();
+        $data['users'] = $this->User_Model->getUserCounts();
+        $data['reports'] = $this->User_Model->getReports();
         
         $this->load->view('admin/layouts/header');
         $this->load->view('admin/layouts/siderbar');

@@ -4,7 +4,8 @@
     <div class="col-xs-12">
         <div class="box">
         <div class="box-header">
-            <h3 class="box-title">App Reviews</h3>
+            <h3 class="box-title" style="margin-top: 10px;">&nbsp;&nbsp;&nbsp;<b>App Reviews</b></h3>
+            <br><br>
         </div>
         <!-- /.box-header -->
         <div class="box-body appreviews-table">
