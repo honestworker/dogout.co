@@ -72,7 +72,7 @@ class Smtp_Model extends CI_Model {
         $this->email->send();
     }
 
-    public function sendChangePasswordCode( $email, $code ) {        
+    public function sendChangePasswordCode( $email, $code ) {
         $this->email->from( 'hello@dogout.co', 'Dogout' );
         $this->email->to( $email );
         $this->email->subject( 'Change Your Dogout Account Password' );

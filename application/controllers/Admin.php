@@ -20,6 +20,7 @@ class Admin extends CI_Controller {
             'data' => null,
             'error_type' => 'no_fill'
         );
+
         $this->flash_data = array(
             'errors' => null,
             'alerts' => array(
@@ -28,6 +29,21 @@ class Admin extends CI_Controller {
                 'error' => null
             )
         );
+        $user_data = $this->session->get_userdata();
+        if ( !$user_data ) {
+            redirect('../login');
+        } else {
+            if ( !isset($user_data['id']) ) {
+                redirect('../login');
+            }
+        }
+        if ( !$this->User_Model->isActivated($user_data['id']) ) {
+            $this->session->unset_userdata('id');
+            $this->session->unset_userdata('name');
+            $this->session->unset_userdata('avatar');
+            
+            redirect('../login');
+        }
     }
     
 	public function index() {
@@ -56,67 +72,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-	public function middleware( $action ) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        if ( !$this->User_Model->isActivated($user_data['id']) ) {
-            $this->session->unset_userdata('id');
-            $this->session->unset_userdata('name');
-            $this->session->unset_userdata('avatar');
-            
-            redirect('../login');
-        }
-
-        $this->$action();
-    }
-
-	public function middleware1( $action, $param1 ) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        if ( !$this->User_Model->isActivated($user_data['id']) ) {
-            $this->session->unset_userdata('id');
-            $this->session->unset_userdata('name');
-            $this->session->unset_userdata('avatar');
-            
-            redirect('../login');
-        }
-
-        $this->$action( $param1 );
-    }
-
-	public function middleware2( $action, $param1, $param2 ) {
-        $user_data = $this->session->get_userdata();
-        if ( !$user_data ) {
-            redirect('../login');
-        } else {
-            if ( !isset($user_data['id']) ) {
-                redirect('../login');
-            }
-        }
-        if ( !$this->User_Model->isActivated($user_data['id']) ) {
-            $this->session->unset_userdata('id');
-            $this->session->unset_userdata('name');
-            $this->session->unset_userdata('avatar');
-            
-            redirect('../login');
-        }
-
-        $this->$action( $param1, $param2 );
-    }
-
-	private function getAllAdmins() {        
+	public function getAllAdmins() {
         $data['admins'] = $this->User_Model->getUsers(1);
         
         $this->load->view('admin/layouts/header');
@@ -125,7 +81,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-	public function getAllUsers() {        
+	public function getAllUsers() {
         $data['users'] = $this->User_Model->getUsers(2);
         
         $this->load->view('admin/layouts/header');
@@ -157,7 +113,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-	private function disableUser( $user_id ) {        
+	public function disableUser( $user_id ) {
         $result = $this->User_Model->disableUser( $user_id );
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -177,7 +133,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-	private function deleteUser( $user_id ) {        
+	public function deleteUser( $user_id ) {
         $result = $this->User_Model->deleteUser( $user_id );
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -194,7 +150,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-	private function getAllAppReviews() {
+	public function getAllAppReviews() {
         $data['reports'] = $this->User_Model->getAllAppReviews();
         
         $this->load->view('admin/layouts/header');
@@ -203,7 +159,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-	private function getAppReview( $place, $address ) {        
+	public function getAppReview( $place, $address ) {
         $data['data'] = $this->User_Model->getAppReviews(urldecode($place), urldecode($address));
         
         $this->load->view('admin/layouts/header');
@@ -212,7 +168,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
 
-    private function deleteAppReviews( $place, $address ) {
+    public function deleteAppReviews( $place, $address ) {
         $result = $this->User_Model->deleteReports('App Review', urldecode($place), urldecode($address));
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -229,7 +185,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-    private function deleteAppReview( $id ) {
+    public function deleteAppReview( $id ) {
         $result = $this->User_Model->deleteReport('App Review', $id);
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -246,7 +202,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-	private function getAllNonDogFriendlys() {
+	public function getAllNonDogFriendlys() {
         $data['reports'] = $this->User_Model->getAllNonDogFriendlys();
         
         $this->load->view('admin/layouts/header');
@@ -255,7 +211,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
 
-	private function getNonDogFriendly( $place, $address ) {
+	public function getNonDogFriendly( $place, $address ) {
         $data['data'] = $this->User_Model->getNonDogFriendlys(urldecode($place), urldecode($address));
         
         $this->load->view('admin/layouts/header');
@@ -264,7 +220,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
 
-    private function deleteNonDogFriendlys( $place, $address ) {
+    public function deleteNonDogFriendlys( $place, $address ) {
         $result = $this->User_Model->deleteReports('Non DogFriendly', urldecode($place), urldecode($address));
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -281,7 +237,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
 
-    private function deleteNonDogFriendly( $id ) {
+    public function deleteNonDogFriendly( $id ) {
         $result = $this->User_Model->deleteReport('Non DogFriendly', $id);
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -298,7 +254,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
     
-	private function getAllNewLocations() {        
+	public function getAllNewLocations() {
         $data['reports'] = $this->User_Model->getAllNewLocations();
         
         $this->load->view('admin/layouts/header');
@@ -307,7 +263,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-	private function getNewLocation( $place, $address ) {        
+	public function getNewLocation( $place, $address ) {
         $data['data'] = $this->User_Model->getNewLocation(urldecode($place), urldecode($address));
         
         $this->load->view('admin/layouts/header');
@@ -316,7 +272,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/layouts/footer');
     }
     
-    private function deleteNewLocations( $place, $address ) {        
+    public function deleteNewLocations( $place, $address ) {
         $result = $this->User_Model->deleteReports('New Location', urldecode($place), urldecode($address));
         if ($result == 0) {
             $this->response['error_type'] = '';
@@ -333,7 +289,7 @@ class Admin extends CI_Controller {
         exit(-1);
     }
     
-    private function deleteNewLocation( $id ) {        
+    public function deleteNewLocation( $id ) {
         $result = $this->User_Model->deleteReport('New Location', $id);
         if ($result == 0) {
             $this->response['error_type'] = '';
